@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cube Animation</title>
+    <style>
+        body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #333;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    .cube {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        transform-style: preserve-3d;
+        transform: rotateX(0deg) rotateY(0deg);
+        animation: rotate 10s infinite linear, shadowPulse 2s infinite ease-in-out;
+    }
+    
+    .face {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ddd;
+        line-height: 100px;
+        text-align: center;
+        font-size: 18px;
+        transition: transform 0.5s ease;
+    }
+    
+    .front  { 
+        transform: rotateY(  0deg) translateZ(50px);
+        background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient: Coral to Peach */
+    }
+    .back   { 
+        transform: rotateY(180deg) translateZ(50px);
+        background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient: Purple to Blue */
+    }
+    .left   { 
+        transform: rotateY(-90deg) translateZ(50px);
+        background: linear-gradient(135deg, #ff512f, #f09819); /* Gradient: Orange to Yellow */
+    }
+    .right  { 
+        transform: rotateY( 90deg) translateZ(50px);
+        background: linear-gradient(135deg, #00c6ff, #0072ff); /* Gradient: Light Blue to Dark Blue */
+    }
+    .top    { 
+        transform: rotateX( 90deg) translateZ(50px);
+        background: linear-gradient(135deg, #fc00ff, #00dbde); /* Gradient: Pink to Turquoise */
+    }
+    .bottom { 
+        transform: rotateX(-90deg) translateZ(50px);
+        background: linear-gradient(135deg, #ff9966, #ff5e62); /* Gradient: Pink-Orange to Red */
+    }
+    
+    @keyframes rotate {
+        from { transform: rotateX(0deg) rotateY(0deg); }
+        to { transform: rotateX(360deg) rotateY(360deg); }
+    }
+    
+    @keyframes shadowPulse {
+        0% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+        50% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); }
+        100% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+    }
+    
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+        animation: pulse 2s infinite;
+    }
+    
+    button:hover {
+        background: #0056b3;
+    }
+    
+    button:focus {
+        outline: none;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .counter {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+    
+    .cube:hover .face {
+        transform: rotateY(180deg) translateZ(50px);
+    }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cube" id="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+        <button id="colorButton">Change Color</button>
+        <div class="counter" id="counter">Clicks: 0</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cube = document.getElementById('cube');
+            const colorButton = document.getElementById('colorButton');
+            const counterDisplay = document.getElementById('counter');
+        
+            let clickCount = 0;
+        
+            // Function to generate a random color
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        
+            // Function to change the cube color
+            function changeCubeColor() {
+                const faces = cube.querySelectorAll('.face');
+                faces.forEach(face => {
+                    face.style.backgroundColor = getRandomColor();
+                });
+            }
+        
+            // Event listener for button click
+            colorButton.addEventListener('click', () => {
+                changeCubeColor();
+                clickCount++;
+                counterDisplay.textContent = `Clicks: ${clickCount}`;
+            });
+        });
+        
+    </script>
+</body>
+</html>
