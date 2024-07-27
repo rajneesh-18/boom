@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Models Generation with Dojo Creations</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        .model {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+            margin: 20px;
+        }
+
+        .face, .zone {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.5s;
+        }
+
+        .face {
+            box-sizing: border-box;
+            border: 2px solid white;
+        }
+
+        .zone {
+            width: 50%;
+            height: 50%;
+            box-sizing: border-box;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button, select {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        button:hover, select:hover {
+            background: #0056b3;
+        }
+
+        button:focus, select:focus {
+            outline: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .counter {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        /* Cube styles */
+        #cube .face {
+            width: 200px;
+            height: 200px;
+        }
+        #cube .front  { transform: rotateY(  0deg) translateZ(100px); }
+        #cube .back   { transform: rotateY(180deg) translateZ(100px); }
+        #cube .left   { transform: rotateY(-90deg) translateZ(100px); }
+        #cube .right  { transform: rotateY( 90deg) translateZ(100px); }
+        #cube .top    { transform: rotateX( 90deg) translateZ(100px); }
+        #cube .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+        /* Pyramid styles */
+        #pyramid {
+            transform: rotateX(35deg) rotateY(45deg);
+        }
+        #pyramid .face {
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        #pyramid .front {
+            border-width: 0 100px 173.2px 100px;
+            border-color: transparent transparent #ff7e5f transparent;
+            transform: rotateY(0deg) translateZ(0);
+        }
+        #pyramid .left {
+            border-width: 0 100px 173.2px 100px;
+            border-color: transparent transparent #6a11cb transparent;
+            transform: rotateY(-120deg) translateZ(0);
+        }
+        #pyramid .right {
+            border-width: 0 100px 173.2px 100px;
+            border-color: transparent transparent #00c6ff transparent;
+            transform: rotateY(120deg) translateZ(0);
+        }
+        #pyramid .bottom {
+            width: 200px;
+            height: 200px;
+            background: #ff9966;
+            transform: translateY(86.6px) rotateX(90deg);
+        }
+
+        /* Dodecahedron styles */
+        #dodecahedron {
+            transform: rotateX(20deg) rotateY(30deg);
+        }
+        #dodecahedron .face {
+            width: 100px;
+            height: 100px;
+        }
+        #dodecahedron .face {
+            transform-style: preserve-3d;
+        }
+
+        /* Example styles for 12 faces */
+        .face1  { transform: translateZ(50px); background: #ff7e5f; }
+        .face2  { transform: rotateY(72deg) translateZ(50px); background: #feb47b; }
+        .face3  { transform: rotateY(144deg) translateZ(50px); background: #6a11cb; }
+        .face4  { transform: rotateY(216deg) translateZ(50px); background: #2575fc; }
+        .face5  { transform: rotateY(288deg) translateZ(50px); background: #ff512f; }
+        .face6  { transform: rotateX(72deg) translateZ(50px); background: #f09819; }
+        .face7  { transform: rotateX(144deg) translateZ(50px); background: #00c6ff; }
+        .face8  { transform: rotateX(216deg) translateZ(50px); background: #0072ff; }
+        .face9  { transform: rotateX(288deg) translateZ(50px); background: #fc00ff; }
+        .face10 { transform: rotateX(-72deg) translateZ(50px); background: #00dbde; }
+        .face11 { transform: rotateX(-144deg) translateZ(50px); background: #ff9966; }
+        .face12 { transform: rotateX(-216deg) translateZ(50px); background: #ff5e62; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="cube" class="model">
+            <div class="face front">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face back">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face left">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face right">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face top">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face bottom">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+        </div>
+        <div id="pyramid" class="model hidden">
+            <div class="face front">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face left">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face right">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+            <div class="face bottom">
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+                <div class="zone"></div><div class="zone"></div><div class="zone"></div>
+            </div>
+        </div>
+        <div id="dodecahedron" class="model hidden">
+            <div class="face face1"><div class="zone"></div></div>
+            <div class="face face2"><div class="zone"></div></div>
+            <div class="face face3"><div class="zone"></div></div>
+            <div class="face face4"><div class="zone"></div></div>
+            <div class="face face5"><div class="zone"></div></div>
+            <div class="face face6"><div class="zone"></div></div>
+            <div class="face face7"><div class="zone"></div></div>
+            <div class="face face8"><div class="zone"></div></div>
+            <div class="face face9"><div class="zone"></div></div>
+            <div class="face face10"><div class="zone"></div></div>
+            <div class="face face11"><div class="zone"></div></div>
+            <div class="face face12"><div class="zone"></div></div>
+        </div>
+        <select id="modelSelector">
+            <option value="cube">Cube</option>
+            <option value="pyramid">Pyramid</option>
+            <option value="dodecahedron">Dodecahedron</option>
+        </select>
+        <button id="colorButton">Change Color</button>
+        <div class="counter" id="counter">Clicks: 0</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cube = document.getElementById('cube');
+            const pyramid = document.getElementById('pyramid');
+            const dodecahedron = document.getElementById('dodecahedron');
+            const colorButton = document.getElementById('colorButton');
+            const counterDisplay = document.getElementById('counter');
+            const modelSelector = document.getElementById('modelSelector');
+        
+            let clickCount = 0;
+        
+            // Function to generate a random color
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        
+            // Function to change the color of each zone in the current model
+            function changeModelColor() {
+                const currentModel = document.querySelector('.model:not(.hidden)');
+                const zones = currentModel.querySelectorAll('.zone');
+                zones.forEach(zone => {
+                    zone.style.backgroundColor = getRandomColor();
+                });
+            }
+        
+            // Event listener for button click
+            colorButton.addEventListener('click', () => {
+                changeModelColor();
+                clickCount++;
+                counterDisplay.textContent = `Clicks: ${clickCount}`;
+            });
+
+            // Event listener for model selection
+            modelSelector.addEventListener('change', (event) => {
+                const selectedModel = event.target.value;
+                document.querySelectorAll('.model').forEach(model => {
+                    model.classList.add('hidden');
+                });
+                document.getElementById(selectedModel).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
