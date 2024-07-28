@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced 3D Dodecahedron</title>
+    <style>
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background:linear-gradient(white,Orange);
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .container {
+            perspective: 1000px;
+        }
+
+        .dodecahedron {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+            margin: 20px;
+        }
+
+        .face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            font-size: 18px;
+            transition: transform 0.5s ease;
+            backface-visibility: hidden;
+        }
+
+        .dodecahedron .face:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(2) { transform: rotateY(72deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(3) { transform: rotateY(144deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(4) { transform: rotateY(216deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(5) { transform: rotateY(288deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(6) { transform: rotateX(72deg) rotateY(36deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(7) { transform: rotateX(72deg) rotateY(-36deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(8) { transform: rotateX(72deg) rotateY(108deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(9) { transform: rotateX(72deg) rotateY(180deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(10) { transform: rotateX(72deg) rotateY(252deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(11) { transform: rotateX(-72deg) rotateY(36deg) translateZ(100px); }
+        .dodecahedron .face:nth-child(12) { transform: rotateX(-72deg) rotateY(-36deg) translateZ(100px); }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #ff5722;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        button:hover {
+            background: #e64a19;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .counter {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dodecahedron" id="dodecahedron">
+            <div class="face">1</div>
+            <div class="face">2</div>
+            <div class="face">3</div>
+            <div class="face">4</div>
+            <div class="face">5</div>
+            <div class="face">6</div>
+            <div class="face">7</div>
+            <div class="face">8</div>
+            <div class="face">9</div>
+            <div class="face">10</div>
+            <div class="face">11</div>
+            <div class="face">12</div>
+        </div>
+        <button id="colorButton">Change Color</button>
+        <div class="counter" id="counter">Clicks: 0</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dodecahedron = document.getElementById('dodecahedron');
+            const colorButton = document.getElementById('colorButton');
+            const counterDisplay = document.getElementById('counter');
+
+            let clickCount = 0;
+
+            // Function to generate a random color
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            // Function to change the dodecahedron face colors
+            function changeDodecahedronColor() {
+                const faces = dodecahedron.querySelectorAll('.face');
+                faces.forEach(face => {
+                    face.style.backgroundColor = getRandomColor();
+                });
+            }
+
+            // Event listener for button click
+            colorButton.addEventListener('click', () => {
+                changeDodecahedronColor();
+                clickCount++;
+                counterDisplay.textContent = `Clicks: ${clickCount}`;
+            });
+        });
+    </script>
+</body>
+</html>
