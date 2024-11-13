@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Creations - Animation Gallery</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Dojo Creations</h1>
+        <p>Explore our latest animations and interactive designs</p>
+    </header>
+
+    <!-- Bio Section -->
+    <section id="bio-section">
+        <div class="bio-content">
+            <img src="assets/image.png" alt="Dojo's Photo" class="bio-photo">
+            <div class="bio-text">
+                <h2>Rajneesh (Dojo)</h2>
+                <p>Developer Advocate | ReactJS | NEXTJS | DevOps | Cloud | Networking</p>
+                <p>Passionate about the real world problems in the tech. Solving bugs which exist in a seconds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation Gallery -->
+    <section id="animation-gallery">
+        <div class="animation-card" onclick="openAnimation('animations/animation1.html')">
+            <img src="assets/images/animation1-thumbnail.jpg" alt="Animation 1">
+            <div class="overlay"><h2>Animation 1</h2></div>
+        </div>
+        <div class="animation-card" onclick="openAnimation('animations/animation2.html')">
+            <img src="assets/images/animation2-thumbnail.jpg" alt="Animation 2">
+            <div class="overlay"><h2>Animation 2</h2></div>
+        </div>
+        <div class="animation-card" onclick="openAnimation('animations/animation3.html')">
+            <img src="assets/images/animation3-thumbnail.jpg" alt="Animation 3">
+            <div class="overlay"><h2>Animation 3</h2></div>
+        </div>
+        <div class="animation-card" onclick="openAnimation('animations/animation4.html')">
+            <img src="assets/images/animation4-thumbnail.jpg" alt="Animation 4">
+            <div class="overlay"><h2>Animation 4</h2></div>
+        </div>
+        <div class="animation-card" onclick="openAnimation('animations/animation5.html')">
+            <img src="assets/images/animation5-thumbnail.jpg" alt="Animation 5">
+            <div class="overlay"><h2>Animation 5</h2></div>
+        </div>
+        <div class="animation-card" onclick="openAnimation('animations/animation6.html')">
+            <img src="assets/images/animation6-thumbnail.jpg" alt="Animation 6">
+            <div class="overlay"><h2>Animation 6</h2></div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="animation-frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="script/animation.js"></script>
+       <!-- Footer -->
+       <footer>
+        <div class="footer-content">
+            <div class="footer-section quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#bio-section">About Me</a></li>
+                    <li><a href="#animation-gallery">Animations</a></li>
+                    <li><a href="https://www.linkedin.com/in/rajneesh-maurya-62b51924a/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-media">
+                <h3>Follow Me</h3>
+                <ul>
+                    <li><a href="https://twitter.com/xrajneeshdojo" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/thegoatdojo" target="_blank">Instagram</a></li>
+                    <li><a href="https://github.com/rajneesh-18" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-info">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:rajneesh120804@gmail.com">rajneesh120804@gmail.com</a></p>
+                <p>Phone: +91-8081637962</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Dojo Creations. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
