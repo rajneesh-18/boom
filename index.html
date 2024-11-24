@@ -5,50 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dojo Creations - Animation Gallery</title>
     <link rel="stylesheet" href="styles/main.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>Dojo Creations</h1>
-        <p>Explore our latest animations and interactive designs</p>
+        <div class="header-content">
+            <h1>Dojo Creations</h1>
+            <p>Explore our latest animations and interactive designs</p>
+            <a href="#animation-gallery" class="cta-button">View Animations</a>
+        </div>
     </header>
-
+    
+    <div class="floating-container">
+        <div class="floating-item"></div>
+        <div class="floating-item"></div>
+        <div class="floating-item"></div>
+        <div class="floating-item"></div>
+    </div>
+    
     <!-- Bio Section -->
-    <section id="bio-section">
+    <section id="bio-section" class="bio-section">
         <div class="bio-content">
             <img src="assets/image.png" alt="Dojo's Photo" class="bio-photo">
             <div class="bio-text">
-                <h2>Rajneesh (Dojo)</h2>
+                <h2>Rajneesh Dojo</h2>
                 <p>Developer Advocate | ReactJS | NEXTJS | DevOps | Cloud | Networking</p>
-                <p>Passionate about the real world problems in the tech. Solving bugs which exist in a seconds.</p>
+                <p>Passionate about solving real-world tech problems. Striving to make a difference in the coding world.</p>
             </div>
         </div>
     </section>
 
     <!-- Animation Gallery -->
-    <section id="animation-gallery">
-        <div class="animation-card" onclick="openAnimation('animations/animation1.html')">
-            <img src="assets/images/animation1-thumbnail.jpg" alt="Animation 1">
-            <div class="overlay"><h2>Animation 1</h2></div>
-        </div>
-        <div class="animation-card" onclick="openAnimation('animations/animation2.html')">
-            <img src="assets/images/animation2-thumbnail.jpg" alt="Animation 2">
-            <div class="overlay"><h2>Animation 2</h2></div>
-        </div>
-        <div class="animation-card" onclick="openAnimation('animations/animation3.html')">
-            <img src="assets/images/animation3-thumbnail.jpg" alt="Animation 3">
-            <div class="overlay"><h2>Animation 3</h2></div>
-        </div>
-        <div class="animation-card" onclick="openAnimation('animations/animation4.html')">
-            <img src="assets/images/animation4-thumbnail.jpg" alt="Animation 4">
-            <div class="overlay"><h2>Animation 4</h2></div>
-        </div>
-        <div class="animation-card" onclick="openAnimation('animations/animation5.html')">
-            <img src="assets/images/animation5-thumbnail.jpg" alt="Animation 5">
-            <div class="overlay"><h2>Animation 5</h2></div>
-        </div>
-        <div class="animation-card" onclick="openAnimation('animations/animation6.html')">
-            <img src="assets/images/animation6-thumbnail.jpg" alt="Animation 6">
-            <div class="overlay"><h2>Animation 6</h2></div>
+    <section id="animation-gallery" class="animation-gallery">
+        <h2>Animation Gallery</h2>
+        <div class="gallery-grid">
+            <div class="animation-card" onclick="openAnimation('animations/animation1.html')">
+                <img src="assets/images/animation1.png" alt="Animation 1">
+                <div class="overlay"><h3>Animation 1</h3></div>
+            </div>
+            <div class="animation-card" onclick="openAnimation('animations/animation2.html')">
+                <img src="assets/images/animation2.png" alt="Animation 2">
+                <div class="overlay"><h3>Animation 2</h3></div>
+            </div>
+            <div class="animation-card" onclick="openAnimation('animations/animation3.html')">
+                <img src="assets/images/animation3.png" alt="Animation 3">
+                <div class="overlay"><h3>Animation 3</h3></div>
+            </div>
+            <div class="animation-card" onclick="openAnimation('animations/animation4.html')">
+                <img src="assets/images/animation4.png" alt="Animation 4">
+                <div class="overlay"><h3>Animation 4</h3></div>
+            </div>
+            <div class="animation-card" onclick="openAnimation('animations/animation5.html')">
+                <img src="assets/images/animation5.png" alt="Animation 5">
+                <div class="overlay"><h3>Animation 5</h3></div>
+            </div>
+            <div class="animation-card" onclick="openAnimation('animations/animation6.html')">
+                <img src="assets/images/animation6.png" alt="Animation 6">
+                <div class="overlay"><h3>Animation 6</h3></div>
+            </div>
         </div>
     </section>
 
@@ -61,23 +76,30 @@
     </div>
 
     <script src="script/animation.js"></script>
-       <!-- Footer -->
-       <footer>
+
+    <!-- Footer -->
+    <footer>
         <div class="footer-content">
             <div class="footer-section quick-links">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#bio-section">About Me</a></li>
                     <li><a href="#animation-gallery">Animations</a></li>
-                    <li><a href="https://www.linkedin.com/in/rajneesh-maurya-62b51924a/">Contact</a></li>
+                    <li><a href="https://www.linkedin.com/in/rajneesh-maurya-62b51924a/" target="_blank">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section social-media">
                 <h3>Follow Me</h3>
                 <ul>
-                    <li><a href="https://twitter.com/xrajneeshdojo" target="_blank">Twitter</a></li>
-                    <li><a href="https://www.instagram.com/thegoatdojo" target="_blank">Instagram</a></li>
-                    <li><a href="https://github.com/rajneesh-18" target="_blank">GitHub</a></li>
+                    <li><a href="https://twitter.com/xrajneeshdojo" target="_blank">
+                        <img src="assets/icons/twitter-icon.png" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle;"> Twitter
+                    </a></li>
+                    <li><a href="https://www.instagram.com/thegoatdojo" target="_blank">
+                        <img src="assets/icons/instagram-icon.png" alt="Instagram" style="width: 20px; height: 20px; vertical-align: middle;"> Instagram
+                    </a></li>
+                    <li><a href="https://github.com/rajneesh-18" target="_blank">
+                        <img src="assets/icons/github-icon.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle;"> GitHub
+                    </a></li>
                 </ul>
             </div>
             <div class="footer-section contact-info">
@@ -90,6 +112,5 @@
             <p>&copy; 2024 Dojo Creations. All Rights Reserved.</p>
         </div>
     </footer>
-
 </body>
 </html>
